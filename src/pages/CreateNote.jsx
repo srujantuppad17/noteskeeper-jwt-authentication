@@ -1,0 +1,10 @@
+import React from 'react'
+import Noteform from '../components/Noteform'
+
+const CreateNote = () => {
+  return (
+    <div className='flex items-center justify-center w-full h-screen bg-gray-900'><Noteform/></div>
+  )
+}
+
+export default CreateNote
