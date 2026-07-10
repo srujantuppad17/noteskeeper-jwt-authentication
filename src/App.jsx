@@ -1,46 +1,67 @@
-import React from 'react'
-import Home from './pages/Home'
-import {Routes,Route} from "react-router-dom";
-import CreateNote from './pages/CreateNote'
-import Navbar from './components/Navbar'
+import React from "react";
+import Home from "./pages/Home";
+import CreateNote from "./pages/CreateNote";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
+import { Routes, Route, useLocation } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
 import Fotter from "./components/Fotter";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
+  const location = useLocation();
+
+  const hideLayout =
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
+
   return (
+    <>
+      {!hideLayout && <Navbar />}
 
- 
-    < >
-    
-<Navbar/>
+      <main
+  className={
+    hideLayout
+      ? ""
+      : "container mx-auto px-4 py-6"
+  }
+>
+        <Routes>
 
+          {/* Public Routes */}
 
-<main className='flex-1  container mx-auto p-4'>
-<Routes>
+          <Route path="/login" element={<Login />} />
 
-<Route path="/" element={<Home/>}/>
+          <Route path="/signup" element={<Signup />} />
 
+          {/* Protected Routes */}
 
-<Route path="/create" element={<CreateNote/>}/>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
 
-</Routes>
+          <Route
+            path="/create"
+            element={
+              <ProtectedRoute>
+                <CreateNote />
+              </ProtectedRoute>
+            }
+          />
 
+        </Routes>
+      </main>
 
-
-</main>
-
-
-
-
-
-
-
-
-
-<Fotter/>
+      {!hideLayout && <Fotter />}
     </>
+  );
+};
 
-  )
-
-}
-
-export default App
+export default App;

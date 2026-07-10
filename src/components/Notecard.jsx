@@ -9,29 +9,12 @@ function Notecard({note}) {
         title:note.title,
         content:note.content
     })
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    const handleUpdate=()=>{
+const handleUpdate=()=>{
         updateNote(note._id,editData)
         setIsEditing(false)
     }
   return (
-     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-lg transition-all p-5 flex flex-col">
-      {isEditing ? (
+<div className="bg-gray-800 rounded-2xl shadow-lg hover:shadow-x    l transition-all duration-300 p-6 flex flex-col min-h-[220px]">      {isEditing ? (
         <>
           {/* Edit Mode */}
           <input
@@ -72,12 +55,13 @@ function Notecard({note}) {
       ) : (
         <>
           {/* View Mode */}
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            {note.title}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 mt-2 flex-1">
-            {note.content}
-          </p>
+          <h2 className="text-2xl font-bold text-white">
+  {note.title}
+</h2>
+
+<p className="text-gray-300 mt-4 flex-1 leading-7">
+  {note.content}
+</p>
 
           {/* Footer: date + actions */}
           <div className="mt-4 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
